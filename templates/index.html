@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es" class="bg-slate-900 text-slate-100 relative overflow-hidden">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>TSP Templado Simulado - Sai Edition</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='styles.css') }}"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body
+        class="min-h-screen flex flex-col items-center justify-center font-mono relative overflow-hidden"
+    >
+        <!-- Círculos animados de fondo -->
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+        <div class="circle circle4"></div>
+        <div class="circle circle5"></div>
+
+        <div
+            class="w-full max-w-xl p-6 rounded-2xl shadow-lg bg-slate-800 border border-cyan-600 animate-fade-in relative z-10"
+        >
+            <h1 class="text-3xl font-bold text-cyan-400 mb-6 text-center">
+                TSP - Simulated Annealing
+            </h1>
+            <form action="/resolver" method="POST" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-slate-300"
+                        >Temperatura Inicial:</label
+                    >
+                    <input
+                        type="number"
+                        step="0.1"
+                        name="temperatura"
+                        class="w-full px-4 py-2 rounded bg-slate-700 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                        required
+                    />
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-300"
+                        >Temperatura Mínima:</label
+                    >
+                    <input
+                        type="number"
+                        step="0.01"
+                        name="t_min"
+                        class="w-full px-4 py-2 rounded bg-slate-700 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                        required
+                    />
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-300"
+                        >Velocidad de Enfriamiento:</label
+                    >
+                    <input
+                        type="number"
+                        name="velocidad"
+                        class="w-full px-4 py-2 rounded bg-slate-700 text-white border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                        required
+                    />
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-300"
+                        >Ciudad Origen:</label
+                    >
+                    <select
+                        name="origen"
+                        class="w-full px-4 py-2 rounded bg-slate-700 text-white border border-cyan-500"
+                    >
+                        <option>Jiloyork</option>
+                        <option>Toluca</option>
+                        <option>Atlacomulco</option>
+                        <option>Guadalajara</option>
+                        <option>Monterrey</option>
+                        <option>QuintanaRoo</option>
+                        <option>Michoacan</option>
+                        <option>Aguascalientes</option>
+                        <option>CDMX</option>
+                        <option>QRO</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-300"
+                        >Ciudad Destino:</label
+                    >
+                    <select
+                        name="destino"
+                        class="w-full px-4 py-2 rounded bg-slate-700 text-white border border-cyan-500"
+                    >
+                        <option>Jiloyork</option>
+                        <option>Toluca</option>
+                        <option>Atlacomulco</option>
+                        <option>Guadalajara</option>
+                        <option>Monterrey</option>
+                        <option>QuintanaRoo</option>
+                        <option>Michoacan</option>
+                        <option>Aguascalientes</option>
+                        <option>CDMX</option>
+                        <option>QRO</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button
+                        type="submit"
+                        class="px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg transition duration-300 shadow-lg"
+                    >
+                        Resolver Ruta
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        {% if ruta %}
+        <!-- Modal -->
+        <div
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fade-in-fast"
+        >
+            <div
+                class="bg-slate-800 border border-cyan-600 p-6 rounded-xl w-full max-w-md shadow-xl animate-slide-up relative z-50"
+            >
+                <h2 class="text-xl font-semibold text-cyan-400 mb-4">
+                    Ruta Óptima
+                </h2>
+                <ul
+                    class="list-disc pl-6 text-slate-200 max-h-64 overflow-auto"
+                >
+                    {% for ciudad in ruta %}
+                    <li>{{ ciudad }}</li>
+                    {% endfor %}
+                </ul>
+                <p class="mt-4 text-cyan-300 font-bold">
+                    Distancia Total: {{ distancia }}
+                </p>
+                <div class="mt-6 text-center">
+                    <a
+                        href="/"
+                        class="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded transition"
+                        >Volver</a
+                    >
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </body>
+</html>

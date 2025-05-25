@@ -1,0 +1,87 @@
+/* Animación para los círculos */
+@keyframes floatUpDown {
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+        opacity: 0.5;
+    }
+}
+.circle {
+    position: absolute;
+    border-radius: 9999px;
+    opacity: 0.3;
+    animation: floatUpDown 6s ease-in-out infinite;
+}
+.circle1 {
+    width: 200px;
+    height: 200px;
+    background: #0891b2; /* cyan-600 */
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+.circle2 {
+    width: 150px;
+    height: 150px;
+    background: #0e7490; /* cyan-700 */
+    top: 70%;
+    left: 15%;
+    animation-delay: 2s;
+}
+.circle3 {
+    width: 250px;
+    height: 250px;
+    background: #22d3ee; /* cyan-400 */
+    top: 30%;
+    right: 10%;
+    animation-delay: 4s;
+}
+.circle4 {
+    width: 100px;
+    height: 100px;
+    background: #38bdf8; /* cyan-400 */
+    bottom: 15%;
+    right: 25%;
+    animation-delay: 1s;
+}
+.circle5 {
+    width: 120px;
+    height: 120px;
+    background: #06b6d4; /* cyan-500 */
+    bottom: 5%;
+    left: 40%;
+    animation-delay: 3s;
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+.animate-fade-in-fast {
+    animation: fadeIn 0.4s ease-in-out;
+}
+.animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
